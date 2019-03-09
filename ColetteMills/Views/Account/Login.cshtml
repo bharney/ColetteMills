@@ -1,0 +1,106 @@
+﻿@model ColetteMills.Models.ViewModel.AccountViewModel
+
+@{
+    ViewBag.Title = "Register or Log in";
+}
+
+<hgroup class="title" style="text-align: center;">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <div class="col-lg-6 col-xs-12">
+            <section class="registation" id="registrationForm">
+
+                <hgroup class="title">
+                    <h2>Create a new account.</h2>
+                </hgroup>
+
+                @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+        
+                    <fieldset>
+                        <legend>Registration Form</legend>
+                        <div class="row">
+                            @Html.LabelFor(m => m.RegistrationDetails.FirstName, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.TextBoxFor(m => m.RegistrationDetails.FirstName, new { @class = "col-lg-6 col-xs-12" })
+                        </div>
+                        <br />
+                        <div class="row">
+                            @Html.LabelFor(m => m.RegistrationDetails.LastName, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.TextBoxFor(m => m.RegistrationDetails.LastName, new { @class = "col-lg-6 col-xs-12" })
+                        </div>
+                        <br />
+                        <div class="row">
+                            @Html.LabelFor(m => m.RegistrationDetails.Email, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.TextBoxFor(m => m.RegistrationDetails.Email, new { @class = "col-lg-6 col-xs-12" })
+                        </div>
+                        <br />
+                        <div class="row">
+                            @Html.LabelFor(m => m.RegistrationDetails.UserName, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.TextBoxFor(m => m.RegistrationDetails.UserName, new { @class = "col-lg-6 col-xs-12" })
+                        </div>
+                        <br />
+                        <div class="row">
+                            @Html.LabelFor(m => m.RegistrationDetails.Password, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.PasswordFor(m => m.RegistrationDetails.Password, new { @class = "col-lg-6 col-xs-12" })
+                        </div>
+                        <br />
+                        <div class="row">
+                            @Html.LabelFor(m => m.RegistrationDetails.ConfirmPassword, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.PasswordFor(m => m.RegistrationDetails.ConfirmPassword, new { @class = "col-lg-6 col-xs-12" })
+                        </div>
+                        <br />
+                        <p>
+                            <button type="submit" class="btn btn-success" value="Register">Register</button>
+                        </p>
+                    </fieldset>
+                }
+
+            </section>
+        </div>
+        <div class="col-lg-6 col-xs-12">
+            <section id="loginForm">
+                <h2>Use a local account to log in.</h2>
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    <fieldset>
+                        <legend>Log in Form</legend>
+                        <div class="row">
+                            @Html.LabelFor(m => m.LoginDetails.UserName, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.TextBoxFor(m => m.LoginDetails.UserName, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.ValidationMessageFor(m => m.LoginDetails.UserName)
+                        </div>
+                        <br />
+                        <div class="row">
+                            @Html.LabelFor(m => m.LoginDetails.Password, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.PasswordFor(m => m.LoginDetails.Password, new { @class = "col-lg-6 col-xs-12" })
+                            @Html.ValidationMessageFor(m => m.LoginDetails.Password)
+                        </div>
+                        <br />
+                        <div class="row">
+                            @Html.CheckBoxFor(m => m.LoginDetails.RememberMe)
+                            @Html.LabelFor(m => m.LoginDetails.RememberMe, new { @class = "col-lg-6 col-xs-12" })
+                        </div>
+                        <br />
+
+                        <p>
+                            <button type="submit" class="btn btn-success" value="Login">Login</button>
+                        </p>
+                        <br />
+                        <br />
+                    </fieldset>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

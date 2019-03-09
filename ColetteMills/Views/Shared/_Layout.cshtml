@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Colette Mills</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/jquery.fancybox.css" type="text/css" media="screen" />
+    <link href="~/Content/jquery.fancybox-thumbs.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" href="~/Content/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../css/transitions.css" media="all" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript" src="~/Scripts/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.fancybox-thumbs.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.fancybox-buttons.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.fancybox-media.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.collagePlus.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.removeWhitespace.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.collageCaption.js"></script>
+    <script type="text/javascript" src="~/Scripts/Site.js"></script>
+
+</head>
+<body>
+    <header>
+        <div id="custom-nav" class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">
+                        <div class="site-title">@Html.ActionLink("Colette Mills", "Index", new { controller = "Home" })</div>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li>@Html.ActionLink("Contribute to Portfolio", "Create", "Portfolio")</li>
+                        }
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div id="body">
+            <!-- Page Content -->
+            <!--<div class="container">-->
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+
+    </div>
+    <footer class="footer navbar-fixed-bottom">
+        <div class="container">
+            <div style="margin-left: auto;">
+                <p>&copy; @DateTime.Now.Year - Colette Mills</p>
+            </div>
+        </div>
+    </footer>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
